@@ -23,7 +23,7 @@ export default function MyCourses() {
   useEffect(() => {
     if (!user) return;
     setLoading(true);
-    fetch(`http://localhost:3001/api/user-courses/${user.id}`)
+    fetch(`/api/user-courses/${user.id}`)
       .then(res => res.json())
       .then(data => {
         setCourses(data.courses || []);

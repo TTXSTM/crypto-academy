@@ -52,6 +52,6 @@ app.get('/uploads/materials/:filename', (req, res) => {
 });
 
 // Старт сервера
-app.listen(PORT, () => {
+app.listen(3001, '0.0.0.0', () => {
   console.log(`✅ Сервер запущен на http://localhost:${PORT}`);
 });

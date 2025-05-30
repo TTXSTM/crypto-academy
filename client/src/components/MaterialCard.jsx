@@ -21,7 +21,7 @@ const MaterialCard = ({ id, title, time, image, tags = [], created_at, difficult
       <div className="absolute w-full h-full bg-white border border-zinc-300 rounded-[20px]" />
 
       <img
-        src={`http://localhost:3001${image}`}
+        src={`${image}`}
         alt={title}
         className="absolute top-0 left-0 w-full h-[185px] object-cover rounded-t-[20px]"
       />

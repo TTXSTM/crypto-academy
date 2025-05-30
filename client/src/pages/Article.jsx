@@ -41,7 +41,7 @@ const share = (type) => {
 };
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/materials/${id}`)
+    fetch(`/api/materials/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Материал не найден");
         return res.json();
@@ -49,7 +49,7 @@ const share = (type) => {
       .then((data) => setArticle(data))
       .catch(() => setArticle(null));
 
-    fetch("http://localhost:3001/api/materials")
+    fetch("/api/materials")
       .then((res) => res.json())
       .then((data) => {
         const filtered = data.filter((a) => a.id !== +id).slice(0, 3);
@@ -79,7 +79,7 @@ const share = (type) => {
 
         <div className="w-[740px] h-[410px] mb-[30px]">
           <img
-            src={`http://localhost:3001${article.image}`}
+            src={`${article.image}`}
             alt={article.title}
             className="w-full h-full object-cover rounded-[20px]"
           />
@@ -166,7 +166,7 @@ const share = (type) => {
                 className="cursor-pointer"
               >
                 <img
-                  src={`http://localhost:3001${item.image}`}
+                  src={`${item.image}`}
                   className="w-full h-36 rounded-[10px] object-cover mb-2"
                   alt={item.title}
                 />

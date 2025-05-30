@@ -30,12 +30,12 @@ const MenuBar = ({ editor }) => {
       formData.append('image', file);
 
       try {
-        const res = await fetch('http://localhost:3001/api/upload', {
+        const res = await fetch('/api/upload', {
           method: 'POST',
           body: formData,
         });
         const data = await res.json();
-        editor.chain().focus().setImage({ src: `http://localhost:3001${data.url}` }).run();
+        editor.chain().focus().setImage({ src: `${data.url}` }).run();
       } catch (err) {
         console.error("Ошибка загрузки изображения:", err);
         alert("Не удалось загрузить изображение.");

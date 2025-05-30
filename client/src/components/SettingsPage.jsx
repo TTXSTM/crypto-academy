@@ -24,7 +24,7 @@ export default function SettingsPage() {
     }
 
     try {
-      const res = await fetch(`http://localhost:3001/api/users/${user.id}`, {
+      const res = await fetch(`/api/users/${user.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
