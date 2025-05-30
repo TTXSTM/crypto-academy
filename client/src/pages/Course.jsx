@@ -160,7 +160,7 @@ const Course = () => {
 
   const handleStart = async () => {
     if (user && course?.id) {
-      await fetch('http://localhost:3001/api/user-courses', {
+      await fetch('/api/user-courses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_id: user.id, course_id: course.id })
@@ -176,7 +176,7 @@ const Course = () => {
     setProgress(course.id, updated);
 
     if (user && course?.id) {
-      await fetch('http://localhost:3001/api/user-courses/progress', {
+      await fetch('/api/user-courses/progress', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -191,7 +191,7 @@ const Course = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/courses/${id}`)
+    fetch(`/api/courses/${id}`)
       .then(res => {
         if (!res.ok) throw new Error('Ошибка при загрузке курса');
         return res.json();

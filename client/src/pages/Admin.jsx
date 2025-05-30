@@ -26,7 +26,7 @@ const Admin = () => {
 
   // Получить все теги
   const fetchTags = () => {
-  fetch('http://localhost:3001/api/materials/tags')
+  fetch('/api/materials/tags')
     .then(res => res.ok ? res.json() : Promise.reject('Ошибка'))
     .then(data => {
       if (Array.isArray(data)) {
@@ -44,7 +44,7 @@ const Admin = () => {
     e.preventDefault();
     const tagName = newTag.trim();
     if (!tagName) return;
-    fetch('http://localhost:3001/api/materials/tags', {
+    fetch('/materials/tags', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: tagName }),
@@ -66,19 +66,19 @@ const Admin = () => {
 
   // --- Materials & Courses ---
   useEffect(() => {
-    fetch('http://localhost:3001/api/courses').then(res => res.json()).then(setCourses);
-    fetch('http://localhost:3001/api/materials').then(res => res.json()).then(setMaterials);
+    fetch('/api/courses').then(res => res.json()).then(setCourses);
+    fetch('/api/materials').then(res => res.json()).then(setMaterials);
     fetchTags();
   }, []);
 
   const handleDeleteCourse = (id) => {
     if (!window.confirm('Удалить курс?')) return;
-    fetch(`http://localhost:3001/api/courses/${id}`, { method: 'DELETE' })
+    fetch(`/api/courses/${id}`, { method: 'DELETE' })
       .then(() => setCourses(prev => prev.filter(c => c.id !== id)));
   };
 
   const handleEditCourse = (course) => {
-    fetch(`http://localhost:3001/api/courses/${course.id}`)
+    fetch(`/api/courses/${course.id}`)
       .then(res => res.json())
       .then(data => {
         setEditingId(course.id);
@@ -144,13 +144,13 @@ const Admin = () => {
   // --- Materials ---
   const handleDelete = id => {
     if (window.confirm('Удалить материал?')) {
-      fetch(`http://localhost:3001/api/materials/${id}`, { method: 'DELETE' })
+      fetch(`/api/materials/${id}`, { method: 'DELETE' })
         .then(() => setMaterials(prev => prev.filter(item => item.id !== id)));
     }
   };
 
   const handleEdit = (id) => {
-    fetch(`http://localhost:3001/api/materials/${id}`)
+    fetch(`/api/materials/${id}`)
       .then(res => res.json())
       .then(data => {
         setEditingId(id);
@@ -195,7 +195,7 @@ const Admin = () => {
         setImage(null);
         setContent('');
         setSelectedTags([]);
-        return fetch('http://localhost:3001/api/materials');
+        return fetch('/api/materials');
       })
       .then(res => res.json())
       .then(setMaterials);
@@ -227,15 +227,15 @@ const Admin = () => {
         setDifficulty('');
         setContent('');
         setCourseChapters([{ title: '', content: '', quiz: [{ question: '', options: ['', '', '', ''], correct: [] }] }]);
-        return fetch('http://localhost:3001/api/courses');
+        return fetch('/api/courses');
       })
       .then(res => res.json())
       .then(setCourses);
   };
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/courses').then(res => res.json()).then(setCourses);
-    fetch('http://localhost:3001/api/materials')
+    fetch('/api/courses').then(res => res.json()).then(setCourses);
+    fetch('/api/materials')
       .then(res => res.json())
       .then(data => {
         console.log('materials:', data); // <--- ЭТО ВАЖНО!

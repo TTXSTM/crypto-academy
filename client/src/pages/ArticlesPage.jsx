@@ -42,7 +42,7 @@ const ArticlesPage = () => {
   }, [tagFromQuery]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/materials')
+    fetch('/api/materials')
       .then(res => res.json())
       .then(data => {
         setAllArticles(data);

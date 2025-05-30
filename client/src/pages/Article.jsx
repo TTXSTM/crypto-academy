@@ -41,7 +41,7 @@ const share = (type) => {
 };
 
   useEffect(() => {
-    fetch(`http://localhost:3001/api/materials/${id}`)
+    fetch(`/api/materials/${id}`)
       .then((res) => {
         if (!res.ok) throw new Error("Материал не найден");
         return res.json();
@@ -49,7 +49,7 @@ const share = (type) => {
       .then((data) => setArticle(data))
       .catch(() => setArticle(null));
 
-    fetch("http://localhost:3001/api/materials")
+    fetch("/api/materials")
       .then((res) => res.json())
       .then((data) => {
         const filtered = data.filter((a) => a.id !== +id).slice(0, 3);

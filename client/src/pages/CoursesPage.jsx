@@ -8,7 +8,7 @@ const CoursesPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/courses")
+    fetch("/api/courses")
       .then((res) => res.json())
       .then((data) => setCourses(data));
   }, []);

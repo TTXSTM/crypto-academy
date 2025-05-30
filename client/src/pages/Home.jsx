@@ -8,7 +8,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/materials")
+    fetch("/api/materials")
       .then((res) => res.json())
       .then((data) => {
         setMaterials(data);
