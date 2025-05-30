@@ -1,0 +1,28 @@
+{
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.7",
+    "@tailwindcss/typography": "^0.5.16",
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix client\" \"node server/index.js\"",
+    "init:courses": "node server/initCourses.js"
+  },
+  "dependencies": {
+    "@tiptap/extension-color": "^2.12.0",
+    "@tiptap/extension-image": "^2.12.0",
+    "@tiptap/extension-link": "^2.12.0",
+    "@tiptap/extension-text-style": "^2.12.0",
+    "@tiptap/extension-underline": "^2.12.0",
+    "@tiptap/react": "^2.12.0",
+    "@tiptap/starter-kit": "^2.12.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "multer": "^2.0.0",
+    "quill": "^2.0.3",
+    "react-quill": "^2.0.0-beta.4",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}
