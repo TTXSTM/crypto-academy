@@ -42,7 +42,7 @@ const ArticlesPage = () => {
   }, [tagFromQuery]);
 
   useEffect(() => {
-    fetch('/api/materials')
+    fetch('http://localhost:3001/api/materials')
       .then(res => res.json())
       .then(data => {
         setAllArticles(data);
@@ -155,7 +155,7 @@ const ArticlesPage = () => {
             className="relative w-[422px] h-[312px] bg-white rounded-[20px] border border-zinc-300 cursor-pointer overflow-hidden hover:shadow-md transition-shadow"
           >
             <img
-              src={`${article.image}`}
+              src={`http://localhost:3001${article.image}`}
               alt={article.title}
               className="w-full h-48 object-cover rounded-tl-[20px] rounded-tr-[20px]"
             />

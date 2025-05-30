@@ -26,7 +26,7 @@ const Admin = () => {
 
   // Получить все теги
   const fetchTags = () => {
-  fetch('/api/materials/tags')
+  fetch('http://localhost:3001/api/materials/tags')
     .then(res => res.ok ? res.json() : Promise.reject('Ошибка'))
     .then(data => {
       if (Array.isArray(data)) {
@@ -44,7 +44,7 @@ const Admin = () => {
     e.preventDefault();
     const tagName = newTag.trim();
     if (!tagName) return;
-    fetch('/api/materials/tags', {
+    fetch('http://localhost:3001/api/materials/tags', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: tagName }),
@@ -66,19 +66,19 @@ const Admin = () => {
 
   // --- Materials & Courses ---
   useEffect(() => {
-    fetch('/api/courses').then(res => res.json()).then(setCourses);
-    fetch('/api/materials').then(res => res.json()).then(setMaterials);
+    fetch('http://localhost:3001/api/courses').then(res => res.json()).then(setCourses);
+    fetch('http://localhost:3001/api/materials').then(res => res.json()).then(setMaterials);
     fetchTags();
   }, []);
 
   const handleDeleteCourse = (id) => {
     if (!window.confirm('Удалить курс?')) return;
-    fetch(`/api/courses/${id}`, { method: 'DELETE' })
+    fetch(`http://localhost:3001/api/courses/${id}`, { method: 'DELETE' })
       .then(() => setCourses(prev => prev.filter(c => c.id !== id)));
   };
 
   const handleEditCourse = (course) => {
-    fetch(`/api/courses/${course.id}`)
+    fetch(`http://localhost:3001/api/courses/${course.id}`)
       .then(res => res.json())
       .then(data => {
         setEditingId(course.id);
@@ -86,7 +86,7 @@ const Admin = () => {
         setTime(data.time);
         setDifficulty(data.difficulty);
         setContent(data.content);
-        setCurrentImageUrl(`${data.image}`);
+        setCurrentImageUrl(`http://localhost:3001${data.image}`);
         setCourseChapters(data.chapters || []);
       });
   };
@@ -144,13 +144,13 @@ const Admin = () => {
   // --- Materials ---
   const handleDelete = id => {
     if (window.confirm('Удалить материал?')) {
-      fetch(`/api/materials/${id}`, { method: 'DELETE' })
+      fetch(`http://localhost:3001/api/materials/${id}`, { method: 'DELETE' })
         .then(() => setMaterials(prev => prev.filter(item => item.id !== id)));
     }
   };
 
   const handleEdit = (id) => {
-    fetch(`/api/materials/${id}`)
+    fetch(`http://localhost:3001/api/materials/${id}`)
       .then(res => res.json())
       .then(data => {
         setEditingId(id);
@@ -161,7 +161,7 @@ const Admin = () => {
         setContent(data.content);
         // Теперь теги — массив объектов {id, name, color}, сохраняем выбранные id
         setSelectedTags(Array.isArray(data.tags) ? data.tags.map(tag => tag.id) : []);
-        setCurrentImageUrl(`${data.image}`);
+        setCurrentImageUrl(`http://localhost:3001${data.image}`);
       });
   };
 
@@ -181,8 +181,8 @@ const Admin = () => {
 
     const method = editingId ? 'PUT' : 'POST';
     const url = editingId
-      ? `/api/materials/${editingId}`
-      : '/api/materials';
+      ? `http://localhost:3001/api/materials/${editingId}`
+      : 'http://localhost:3001/api/materials';
 
     fetch(url, { method, body: formData })
       .then(() => {
@@ -195,7 +195,7 @@ const Admin = () => {
         setImage(null);
         setContent('');
         setSelectedTags([]);
-        return fetch('/api/materials');
+        return fetch('http://localhost:3001/api/materials');
       })
       .then(res => res.json())
       .then(setMaterials);
@@ -216,7 +216,7 @@ const Admin = () => {
     formData.append('chapters', JSON.stringify(courseChapters));
 
     const method = editingId ? 'PUT' : 'POST';
-    const url = editingId ? `/api/courses/${editingId}` : '/api/courses';
+    const url = editingId ? `http://localhost:3001/api/courses/${editingId}` : 'http://localhost:3001/api/courses';
 
     fetch(url, { method, body: formData })
       .then(() => {
@@ -227,15 +227,15 @@ const Admin = () => {
         setDifficulty('');
         setContent('');
         setCourseChapters([{ title: '', content: '', quiz: [{ question: '', options: ['', '', '', ''], correct: [] }] }]);
-        return fetch('/api/courses');
+        return fetch('http://localhost:3001/api/courses');
       })
       .then(res => res.json())
       .then(setCourses);
   };
 
   useEffect(() => {
-    fetch('/api/courses').then(res => res.json()).then(setCourses);
-    fetch('/api/materials')
+    fetch('http://localhost:3001/api/courses').then(res => res.json()).then(setCourses);
+    fetch('http://localhost:3001/api/materials')
       .then(res => res.json())
       .then(data => {
         console.log('materials:', data); // <--- ЭТО ВАЖНО!
@@ -455,7 +455,7 @@ const Admin = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {courses.map(course => (
                 <div key={course.id} className="border p-4 rounded">
-                  <img src={`${course.image}`} alt={course.title} className="w-full h-40 object-cover mb-2 rounded" />
+                  <img src={`http://localhost:3001${course.image}`} alt={course.title} className="w-full h-40 object-cover mb-2 rounded" />
                   <h3 className="text-lg font-semibold">{course.title}</h3>
                   <p className="text-sm text-gray-500 mb-1">Время: {course.time}</p>
                   <p className="text-sm text-gray-500 mb-3">Сложность: {course.difficulty}</p>

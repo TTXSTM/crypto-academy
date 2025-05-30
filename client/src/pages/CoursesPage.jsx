@@ -8,7 +8,7 @@ const CoursesPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("/api/courses")
+    fetch("http://localhost:3001/api/courses")
       .then((res) => res.json())
       .then((data) => setCourses(data));
   }, []);
@@ -71,7 +71,7 @@ const CoursesPage = () => {
                 onClick={() => goToCourse(course.id)}
               >
                 <img
-                  src={`${course.image}`}
+                  src={`http://localhost:3001${course.image}`}
                   alt={course.title}
                   className="w-full h-48 object-cover rounded-t-[20px]"
                 />
