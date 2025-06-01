@@ -21,7 +21,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // СОЗДАНИЕ КУРСА
-// СОЗДАНИЕ КУРСА
 router.post('/', upload.fields([{ name: 'image' }, { name: 'background' }]), async (req, res) => {
   const { title, time, difficulty, content, chapters } = req.body;
 

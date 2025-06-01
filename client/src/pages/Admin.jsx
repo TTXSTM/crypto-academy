@@ -44,7 +44,7 @@ const Admin = () => {
     e.preventDefault();
     const tagName = newTag.trim();
     if (!tagName) return;
-    fetch('/materials/tags', {
+    fetch('/api/materials/tags', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: tagName }),
