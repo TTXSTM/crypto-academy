@@ -217,7 +217,7 @@ const Course = () => {
           className="relative max-w-[1340px] mx-auto h-[384px] flex items-stretch text-white px-[50px]"
           style={{
             backgroundColor: "#0A0B0D",
-            backgroundImage: course.background ? `url(http://localhost:3001${course.background})` : "none",
+            backgroundImage: course.background ? `url(/uploads/${course.background})` : "none",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "right center",
             backgroundSize: "contain",

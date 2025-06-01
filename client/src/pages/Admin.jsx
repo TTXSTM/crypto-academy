@@ -86,7 +86,7 @@ const Admin = () => {
         setTime(data.time);
         setDifficulty(data.difficulty);
         setContent(data.content);
-        setCurrentImageUrl(`http://localhost:3001${data.image}`);
+        setCurrentImageUrl(`${data.image}`);
         setCourseChapters(data.chapters || []);
       });
   };
@@ -161,7 +161,7 @@ const Admin = () => {
         setContent(data.content);
         // Теперь теги — массив объектов {id, name, color}, сохраняем выбранные id
         setSelectedTags(Array.isArray(data.tags) ? data.tags.map(tag => tag.id) : []);
-        setCurrentImageUrl(`http://localhost:3001${data.image}`);
+        setCurrentImageUrl(`${data.image}`);
       });
   };
 
@@ -181,8 +181,8 @@ const Admin = () => {
 
     const method = editingId ? 'PUT' : 'POST';
     const url = editingId
-      ? `http://localhost:3001/api/materials/${editingId}`
-      : 'http://localhost:3001/api/materials';
+      ? `/api/materials/${editingId}`
+      : '/api/materials';
 
     fetch(url, { method, body: formData })
       .then(() => {
@@ -216,7 +216,7 @@ const Admin = () => {
     formData.append('chapters', JSON.stringify(courseChapters));
 
     const method = editingId ? 'PUT' : 'POST';
-    const url = editingId ? `http://localhost:3001/api/courses/${editingId}` : 'http://localhost:3001/api/courses';
+    const url = editingId ? `/api/courses/${editingId}` : '/api/courses';
 
     fetch(url, { method, body: formData })
       .then(() => {
@@ -455,7 +455,7 @@ const Admin = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {courses.map(course => (
                 <div key={course.id} className="border p-4 rounded">
-                  <img src={`http://localhost:3001${course.image}`} alt={course.title} className="w-full h-40 object-cover mb-2 rounded" />
+                  <img src={`${course.image}`} alt={course.title} className="w-full h-40 object-cover mb-2 rounded" />
                   <h3 className="text-lg font-semibold">{course.title}</h3>
                   <p className="text-sm text-gray-500 mb-1">Время: {course.time}</p>
                   <p className="text-sm text-gray-500 mb-3">Сложность: {course.difficulty}</p>
