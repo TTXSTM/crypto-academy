@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const filterOptions = [
   { value: "all", label: "Все" }
@@ -105,6 +106,11 @@ const LearnEarn = () => {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>Учитесь и зарабатывайте | Crypto Academy</title>
+      <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+    </Helmet>
     <div className="w-full min-h-screen bg-white flex flex-col items-center">
       {/* Hero */}
       <section className="w-full bg-[#2B3139] flex justify-center pb-[250px] px-[100px] pt-[50px]">
@@ -209,6 +215,7 @@ const LearnEarn = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

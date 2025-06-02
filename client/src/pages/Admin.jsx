@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Editor from '../components/Editor';
+import { Helmet } from "react-helmet";
 
 const Admin = () => {
   const [mode, setMode] = useState('article');
@@ -248,6 +249,11 @@ const Admin = () => {
   const difficultyOptions = ['Начинающий', 'Профессионал', 'Продвинутый'];
 
   return (
+    <>
+    <Helmet>
+        <title>Админ-панель | Crypto Academy</title>
+        <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+    </Helmet>
     <div className="max-w-6xl mx-auto py-10 px-4">
       <div className="mb-6 flex gap-4">
         <button onClick={() => setMode('article')} className={`px-4 py-2 rounded ${mode === 'article' ? 'bg-black text-white' : 'bg-gray-200'}`}>Статья</button>
@@ -470,6 +476,7 @@ const Admin = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 

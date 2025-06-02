@@ -1,6 +1,7 @@
 // AuthModal.jsx
 import React, { useState, useContext } from "react";
 import { UserContext } from "./UserContext";
+import { Helmet } from "react-helmet";
 
 const EMAIL_PHONE_REGEX = /^[\w-+.]+@([\w-]+\.)+[\w-]{2,7}$|^\d{10,15}$/;
 
@@ -99,6 +100,11 @@ function AuthModal({ type, setType, onClose }) {
 
   // UI
   return (
+    <>
+    <Helmet>
+        <title>Вход и регистрация| Crypto Academy</title>
+        <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+    </Helmet>
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
       <div className="bg-[#181A20] p-8 rounded-2xl w-[380px] shadow-2xl relative">
         <button
@@ -261,6 +267,7 @@ function AuthModal({ type, setType, onClose }) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "./UserContext";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 // Для примера, если пусто — используйте свою SVG или png
 const EmptyCoursesSvg = () => (
@@ -37,6 +38,11 @@ export default function MyCourses() {
   );
 
   return (
+    <>
+    <Helmet>
+      <title>Мои курсы | Crypto Academy</title>
+      <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+    </Helmet>
     <div className="max-w-[1200px] mx-auto pt-12 pb-20">
       <h1 className="text-4xl font-black text-black mb-10">Трек для начинающих</h1>
       {/* Tabs */}
@@ -136,5 +142,6 @@ export default function MyCourses() {
         </div>
       )}
     </div>
+    </>
   );
 }

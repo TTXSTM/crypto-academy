@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Clock } from 'lucide-react';
+import { Helmet } from "react-helmet";
 
 const topics = [
   'Altcoin', 'Crypto', 'Биткоин', 'Блокчейн', 'Консенсус', 'Криптография',
@@ -97,6 +98,11 @@ const ArticlesPage = () => {
   };
 
   return (
+    <>
+    <Helmet>
+      <title>Статьи | Crypto Academy</title>
+      <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+    </Helmet>
     <div className="max-w-[1440px] w-full px-[50px] mx-auto py-10">
       <div className="w-full bg-white py-10 flex flex-col lg:flex-row lg:items-start justify-between gap-10">
         <div className="flex-1">
@@ -197,6 +203,7 @@ const ArticlesPage = () => {
         <button onClick={handleNext} className="w-7 h-7 flex items-center justify-center text-base font-normal font-['Inter'] text-black cursor-pointer hover:bg-zinc-100">&gt;</button>
       </div>
     </div>
+    </>
   );
 };
 

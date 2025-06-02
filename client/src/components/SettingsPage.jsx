@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "./UserContext";
+import { Helmet } from "react-helmet";
 
 export default function SettingsPage() {
   const { user, setUser } = useContext(UserContext);
@@ -50,6 +51,11 @@ export default function SettingsPage() {
   };
 
   return (
+    <>
+    <Helmet>
+      <title>Настройки | Crypto Academy</title>
+      <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+    </Helmet>
     <div className="flex flex-col items-center min-h-[80vh] py-12">
       <div className="w-full max-w-[430px] rounded-2xl bg-white shadow-xl px-8 py-10 relative">
         <div className="flex items-center mb-8">
@@ -145,5 +151,6 @@ export default function SettingsPage() {
         {msg && <div className="mt-4 text-center text-yellow-600">{msg}</div>}
       </div>
     </div>
+    </>
   );
 }

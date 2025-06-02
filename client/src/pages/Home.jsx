@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import MaterialCard from "../components/MaterialCard";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const [materials, setMaterials] = useState([]);
@@ -32,6 +33,10 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Главная | Crypto Academy</title>
+        <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+      </Helmet>
       {/* Banner Section */}
       <section className="bg-[#FAFAFA] px-6 md:px-12 pt-[45px]">
         <div className="max-w-[1340px] mx-auto flex flex-col lg:flex-row justify-between items-start gap-12">

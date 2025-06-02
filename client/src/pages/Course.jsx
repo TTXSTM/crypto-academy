@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { UserContext } from '../components/UserContext';
+import { Helmet } from "react-helmet";
 
 // Компонент квиза для главы
 const QuizBlock = ({ quizList, onSuccess }) => {
@@ -210,6 +211,11 @@ const Course = () => {
     completedChapters.every(Boolean);
 
   return (
+    <>
+    <Helmet>
+      <title>{course.title} | Crypto Academy</title>
+      <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+    </Helmet>
     <div className="bg-white font-['Inter'] text-black min-h-screen">
       {/* Хедер */}
       <div className='bg-[#0A0B0D]'>
@@ -280,6 +286,7 @@ const Course = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

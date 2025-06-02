@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Clock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const CoursesPage = () => {
   const [courses, setCourses] = useState([]);
@@ -29,6 +30,11 @@ const CoursesPage = () => {
   });
 
   return (
+    <>
+    <Helmet>
+      <title>Курсы | Crypto Academy</title>
+      <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+    </Helmet>
     <main className="w-full bg-[#FAFAFA]">
       {/* Hero Section */}
       <section className="w-full h-80 bg-neutral-900 px-[50px] py-10 text-white">
@@ -91,6 +97,7 @@ const CoursesPage = () => {
         </div>
       </section>
     </main>
+    </>
   );
 };
 

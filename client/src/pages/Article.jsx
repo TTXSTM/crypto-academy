@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Clock } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const difficultyStyles = {
   "Начинающий": "bg-green-100 text-green-600",
@@ -62,6 +63,11 @@ const share = (type) => {
   }
 
   return (
+    <>
+      <Helmet>
+        <title>{article.title} | Crypto Academy</title>
+        <meta name="description" content="Crypto Academy — бесплатное образование по криптовалютам и блокчейну для всех!" />
+      </Helmet>
     <main className="max-w-[1440px] mx-auto px-4 lg:px-8 py-10 flex flex-col lg:flex-row justify-between gap-12 bg-[#FAFAFA]">
       {/* Main content */}
       <div className="max-w-[740px] w-full relative">
@@ -166,7 +172,7 @@ const share = (type) => {
                 className="cursor-pointer"
               >
                 <img
-                  src={`http://localhost:3001${item.image}`}
+                  src={`${item.image}`}
                   className="w-full h-36 rounded-[10px] object-cover mb-2"
                   alt={item.title}
                 />
@@ -179,6 +185,7 @@ const share = (type) => {
         </div>
       </aside>
     </main>
+    </>
   );
 };
 
