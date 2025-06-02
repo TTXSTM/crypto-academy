@@ -71,7 +71,7 @@ const CoursesPage = () => {
                 onClick={() => goToCourse(course.id)}
               >
                 <img
-                  src={`/uploads/${course.image}`}
+                  src={`${course.image}`}
                   alt={course.title}
                   className="w-full h-48 object-cover rounded-t-[20px]"
                 />

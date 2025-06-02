@@ -79,7 +79,7 @@ const share = (type) => {
 
         <div className="w-[740px] h-[410px] mb-[30px]">
           <img
-            src={`/uploads/${article.image}`}
+            src={`${article.image}`}
             alt={article.title}
             className="w-full h-full object-cover rounded-[20px]"
           />

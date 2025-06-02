@@ -173,7 +173,7 @@ const LearnEarn = () => {
                   <div className="flex">
                     <div className="bg-black rounded-2xl w-[500px] h-[250px] flex justify-center items-center overflow-hidden">
                       <img
-                        src={`/uploads/${course.image}`}
+                        src={`${course.image}`}
                         alt={course.title}
                         className="object-contain max-w-full"
                       />
