@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 router.patch('/progress', (req, res) => {
   const { user_id, course_id, progress, status } = req.body;
   db.run(
-    `UPDATE user_courses SET progress = ?, status = ?, started_at = CURRENT_TIMESTAMP WHERE user_id = ? AND course_id = ?`,
+    `UPDATE user_courses SET progress = ?, status = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = ? AND course_id = ?`,
     [progress, status || 'in-progress', user_id, course_id],
     function (err) {
       if (err) return res.status(500).json({ success: false });
@@ -37,7 +37,9 @@ router.patch('/progress', (req, res) => {
 router.get('/:user_id', (req, res) => {
   const { user_id } = req.params;
   db.all(`
-    SELECT uc.*, c.title, c.image, c.time, c.difficulty
+    SELECT
+      uc.*, c.title, c.image, c.time, c.difficulty,
+      (SELECT COUNT(*) FROM chapters ch WHERE ch.course_id = c.id) AS chapters
     FROM user_courses uc
     JOIN courses c ON c.id = uc.course_id
     WHERE uc.user_id = ?

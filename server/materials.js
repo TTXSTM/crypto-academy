@@ -200,16 +200,6 @@ function getMaterialTags(materialId) {
   });
 }
 
-router.get('/', (req, res) => {
-  db.all('SELECT * FROM materials ORDER BY id DESC', async (err, rows) => {
-    if (err) return res.status(500).json({ error: 'Ошибка при получении материалов' });
-    for (const row of rows) {
-      row.tags = await getMaterialTags(row.id); // Теперь массив объектов тегов!
-    }
-    res.json(rows);
-  });
-});
-
 
 
 module.exports = router;
