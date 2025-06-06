@@ -27,7 +27,7 @@ export default function MyCourses() {
     fetch(`/api/user-courses/${user.id}`)
       .then(res => res.json())
       .then(data => {
-        setCourses(data.courses || []);
+        setCourses(data || []);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -72,36 +72,36 @@ export default function MyCourses() {
         </div>
       ) : filtered.length ? (
         <div className="space-y-10">
-          {filtered.map(courses => (
+          {filtered.map(course => (
             <div
-              key={courses.id}
+              key={course.id}
               className="flex items-center rounded-2xl bg-white shadow px-8 py-6 gap-7"
             >
               <img
-                src={courses.image || "/default-course.png"}
-                alt={courses.title}
+                src={course.image || "/default-course.png"}
+                alt={course.title}
                 className="w-[220px] h-[140px] rounded-xl object-cover bg-stone-100"
                 draggable={false}
               />
               <div className="flex-1 min-w-0">
-                <h2 className="text-2xl font-bold mb-2">{courses.title}</h2>
+                <h2 className="text-2xl font-bold mb-2">{course.title}</h2>
                 <div className="flex items-center gap-2 text-gray-500 mb-2 text-base">
                   <svg width={18} height={18} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx={12} cy={12} r={10} /><path d="M12 6v6l4 2" /></svg>
-                  {courses.duration || courses.time || "—"} мин.
+                  {course.duration || course.time || "—"} мин.
                 </div>
                 {/* Прогресс */}
                 <div className="flex items-center gap-4 mt-4">
                   <div className="flex gap-1 items-center">
-                    {[...Array(courses.chapters || 5)].map((_, idx) => (
+                    {[...Array(course.chapters || 5)].map((_, idx) => (
                       <div
                         key={idx}
                         className={`h-1.5 w-14 rounded`}
-                        style={{ background: idx < (courses.progress || 0) ? "#F4D144" : "#EFF2F5" }}
+                        style={{ background: idx < (course.progress || 0) ? "#F4D144" : "#EFF2F5" }}
                       />
                     ))}
                   </div>
                   <span className="text-gray-400 text-sm font-bold">
-                    {(courses.progress || 0)} / {(courses.chapters || 5)}
+                    {(course.progress || 0)} / {(course.chapters || 5)}
                   </span>
                 </div>
               </div>
@@ -109,7 +109,7 @@ export default function MyCourses() {
                 {tab === "in-progress" ? (
                   <button
                     className="w-full bg-yellow-400 hover:bg-yellow-300 rounded-lg px-5 py-3 font-semibold text-black transition"
-                    onClick={() => navigate(`/courses/${courses.id}`)}
+                    onClick={() => navigate(`/courses/${course.id}`)}
                   >
                     Продолжить обучение
                   </button>
